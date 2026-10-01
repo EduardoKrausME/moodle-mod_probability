@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
+define(["jquery", "core/templates", "core/str"], function ($, Templates, Str) {
     "use strict";
 
     const SELECTORS = {
@@ -34,7 +34,7 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         error: "[data-region='error']",
     };
 
-    const randomFloat = function() {
+    const randomFloat = function () {
         if (window.crypto && window.crypto.getRandomValues) {
             const values = new Uint32Array(1);
             window.crypto.getRandomValues(values);
@@ -43,22 +43,22 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         return Math.random();
     };
 
-    const getSelectedMode = function(root) {
+    const getSelectedMode = function (root) {
         return root.find(SELECTORS.mode + "[aria-pressed='true']").data("mode");
     };
 
-    const getSelectedTrials = function(root) {
+    const getSelectedTrials = function (root) {
         return Number(root.find(SELECTORS.trial + "[aria-pressed='true']").data("trials"));
     };
 
-    const setPressed = function(elements, selected) {
+    const setPressed = function (elements, selected) {
         elements.attr("aria-pressed", "false");
         selected.attr("aria-pressed", "true");
     };
 
-    const parseUrn = function(value) {
+    const parseUrn = function (value) {
         const outcomes = [];
-        String(value).split(/\r?\n/).forEach(function(line) {
+        String(value).split(/\r?\n/).forEach(function (line) {
             const trimmed = line.trim();
             if (!trimmed) {
                 return;
@@ -76,7 +76,7 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         return outcomes;
     };
 
-    const simulate = function(root, mode, trials) {
+    const simulate = function (root, mode, trials) {
         let definitions = [];
 
         if (mode === "coin") {
@@ -106,8 +106,8 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         return {definitions: definitions, trials: trials};
     };
 
-    const resolveLabels = async function(definitions) {
-        const promises = definitions.map(function(item) {
+    const resolveLabels = async function (definitions) {
+        const promises = definitions.map(function (item) {
             if (!item.labelKey) {
                 return Promise.resolve(item.label);
             }
@@ -116,7 +116,7 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         return Promise.all(promises);
     };
 
-    const runSimulation = async function(root) {
+    const runSimulation = async function (root) {
         const mode = getSelectedMode(root);
         const trials = getSelectedTrials(root);
         const preparation = simulate(root, mode, trials);
@@ -134,7 +134,7 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
 
         const definitions = preparation.definitions;
         const labels = await resolveLabels(definitions);
-        const totalWeight = definitions.reduce(function(sum, item) {
+        const totalWeight = definitions.reduce(function (sum, item) {
             return sum + item.weight;
         }, 0);
         const counts = new Array(definitions.length).fill(0);
@@ -157,7 +157,7 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         }
 
         let largestError = 0;
-        const rows = definitions.map(function(item, index) {
+        const rows = definitions.map(function (item, index) {
             const theoretical = item.weight / totalWeight * 100;
             const observed = counts[index] / trials * 100;
             const difference = observed - theoretical;
@@ -186,8 +186,8 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
         results.removeAttr("hidden");
     };
 
-    const initRoot = function(root, options) {
-        root.on("click", SELECTORS.mode, function() {
+    const initRoot = function (root, options) {
+        root.on("click", SELECTORS.mode, function () {
             const button = $(this);
             setPressed(root.find(SELECTORS.mode), button);
             root.find(SELECTORS.config).attr("hidden", true);
@@ -196,11 +196,11 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
             root.find(SELECTORS.error).attr("hidden", true).empty();
         });
 
-        root.on("click", SELECTORS.trial, function() {
+        root.on("click", SELECTORS.trial, function () {
             setPressed(root.find(SELECTORS.trial), $(this));
         });
 
-        root.on("click", SELECTORS.run, function() {
+        root.on("click", SELECTORS.run, function () {
             runSimulation(root);
         });
 
@@ -213,8 +213,8 @@ define(["jquery", "core/templates", "core/str"], function($, Templates, Str) {
     };
 
     return {
-        init: function(options) {
-            $(SELECTORS.root).each(function() {
+        init: function (options) {
+            $(SELECTORS.root).each(function () {
                 initRoot($(this), options || {});
             });
         },

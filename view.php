@@ -22,6 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_probability\event\course_module_viewed;
+use mod_probability\view_data;
+
 require_once(__DIR__ . "/../../config.php");
 
 $id = required_param("id", PARAM_INT);
@@ -39,7 +42,7 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 $PAGE->requires->css("/mod/probability/styles.css");
 
-$event = \mod_probability\event\course_module_viewed::create([
+$event = course_module_viewed::create([
     "objectid" => $probability->id,
     "context" => $context,
 ]);
@@ -51,7 +54,7 @@ $event->trigger();
 $completion = new completion_info($course);
 $completion->set_module_viewed($cm);
 
-$view = new \mod_probability\view_data($probability);
+$view = new view_data($probability);
 $data = $view->export();
 
 $PAGE->requires->js_call_amd("mod_probability/simulator", "init", [[

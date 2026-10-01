@@ -16,6 +16,8 @@
 
 namespace mod_probability;
 
+use stdClass;
+
 /**
  * Prepares Mustache data for the simulator page.
  *
@@ -25,14 +27,14 @@ namespace mod_probability;
  */
 class view_data {
     /** @var stdClass Activity instance. */
-    private \stdClass $instance;
+    private stdClass $instance;
 
     /**
      * Constructor.
      *
-     * @param \stdClass $instance Activity instance.
+     * @param stdClass $instance Activity instance.
      */
-    public function __construct(\stdClass $instance) {
+    public function __construct(stdClass $instance) {
         $this->instance = $instance;
     }
 
