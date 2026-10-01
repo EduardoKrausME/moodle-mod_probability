@@ -1,26 +1,17 @@
 # mod_probability
 
-Probability simulator activity for Moodle.
+Probability Simulator is a Moodle activity for comparing theoretical probability with observed frequency through repeated
+experiments.
 
-It lets learners run 10, 100, or 1,000 simulations and compare observed frequency with theoretical probability.
+## How it works
+
+Learners choose an experiment and run 10, 100 or 1,000 simulations. The activity compares the simulated results with the
+expected theoretical probability, making it easy to see how observed frequency behaves as the number of trials grows.
 
 Included experiments:
 
-- Coin, including a configurable probability of heads.
-- Die with 2 to 100 sides.
-- Urn with any number of named outcomes and quantities using `Name=quantity` lines.
+- **Coin:** with a configurable probability of heads;
+- **Die:** with 2 to 100 sides;
+- **Urn:** with any number of named outcomes and quantities using `Name=quantity` lines.
 
-The simulation runs entirely in the browser. The activity does not store individual simulation results or personal data.
-
-## Requirements
-
-- Moodle 4.5 through 5.2.
-- PHP version supported by the selected Moodle version.
-
-## Installation
-
-Copy the `probability` directory to `mod/probability` and complete the Moodle upgrade process.
-
-## License
-
-GNU GPL v3 or later.
+All simulations run in the browser and individual simulation results are not stored.
