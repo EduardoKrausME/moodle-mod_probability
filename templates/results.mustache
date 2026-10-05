@@ -34,7 +34,7 @@
     </div>
     <div class="mod_probability-stat">
         <span>{{#str}}largesterror, mod_probability{{/str}}</span>
-        <strong>{{largesterror}} pp</strong>
+        <strong>{{largesterrorformatted}}</strong>
     </div>
 </div>
 
@@ -70,7 +70,7 @@
                 <td>{{count}}</td>
                 <td>{{observedformatted}}%</td>
                 <td>{{theoreticalformatted}}%</td>
-                <td>{{differenceformatted}} pp</td>
+                <td>{{differencewithunit}}</td>
             </tr>
         {{/rows}}
         </tbody>
