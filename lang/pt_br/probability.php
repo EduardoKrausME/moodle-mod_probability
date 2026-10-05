@@ -47,6 +47,7 @@ $string['observedcount'] = 'Observado';
 $string['observedfrequency'] = 'Frequência observada';
 $string['outcome'] = 'Resultado';
 $string['outcomes'] = 'Resultados possíveis';
+$string['percentagepoints'] = '{$a} p.p.';
 $string['pluginadministration'] = 'Administração do simulador de probabilidade';
 $string['pluginname'] = 'Simulador de probabilidade';
 $string['privacy:metadata'] = 'O Simulador de probabilidade não armazena dados pessoais. As simulações são executadas somente no navegador do usuário.';
