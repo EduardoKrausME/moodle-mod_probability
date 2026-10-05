@@ -55,7 +55,7 @@ class mod_probability_mod_form extends moodleform_mod {
         $mform->addElement("advcheckbox", "urnenabled", get_string("enableurn", "mod_probability"));
         $mform->setDefault("urnenabled", 1);
 
-        $trialoptions = [10 => "10", 100 => "100", 1000 => "1.000"];
+        $trialoptions = [10 => "10", 100 => "100", 1000 => format_float(1000, 0)];
         $mform->addElement("select", "defaulttrials", get_string("defaulttrials", "mod_probability"), $trialoptions);
         $mform->setDefault("defaulttrials", 100);
 
