@@ -63,6 +63,7 @@ class view_data {
             "trial10" => (int)$this->instance->defaulttrials === 10,
             "trial100" => (int)$this->instance->defaulttrials === 100,
             "trial1000" => (int)$this->instance->defaulttrials === 1000,
+            "trial1000label" => format_float(1000, 0),
         ];
     }
 }
