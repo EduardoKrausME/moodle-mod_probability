@@ -40,7 +40,6 @@ $PAGE->set_url("/mod/probability/view.php", ["id" => $cm->id]);
 $PAGE->set_title(format_string($probability->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
-$PAGE->requires->css("/mod/probability/styles.css");
 
 $event = course_module_viewed::create([
     "objectid" => $probability->id,
