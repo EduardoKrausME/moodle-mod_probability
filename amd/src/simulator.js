@@ -173,10 +173,22 @@ define(["jquery", "core/templates", "core/str"], function ($, Templates, Str) {
             };
         });
 
+        const percentagePointValues = await Promise.all(
+            [largestError.toFixed(2)].concat(rows.map(function (row) {
+                return row.differenceformatted;
+            })).map(function (value) {
+                return Str.get_string("percentagepoints", "mod_probability", value);
+            })
+        );
+
+        rows.forEach(function (row, index) {
+            row.differencewithunit = percentagePointValues[index + 1];
+        });
+
         const context = {
             trials: trials.toLocaleString(),
             outcomecount: rows.length,
-            largesterror: largestError.toFixed(2),
+            largesterrorformatted: percentagePointValues[0],
             rows: rows,
             sequence: sequence,
         };
