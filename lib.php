@@ -39,7 +39,7 @@ function probability_supports($feature) {
         case FEATURE_COMPLETION_TRACKS_VIEWS:
             return true;
         case FEATURE_BACKUP_MOODLE2:
-            return false;
+            return true;
     }
 
     if (defined("FEATURE_MOD_PURPOSE") && $feature === constant("FEATURE_MOD_PURPOSE")) {
